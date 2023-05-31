@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -32,8 +33,8 @@ public class Controller {
     }
 
     @GetMapping("/all")
-    public List<ProductByIdDto> getAllProducts(){
-        return productService.getAllProducts();
+    public List<ProductByIdDto> getAllProducts(@RequestParam String type){
+        return productService.getAllProductsByType(type);
     }
 
     @GetMapping("/get/{id}")

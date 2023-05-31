@@ -4,6 +4,7 @@ import dev.rkorn.testforeasybot.dto.AddProductDto;
 import dev.rkorn.testforeasybot.dto.EditProductDto;
 import dev.rkorn.testforeasybot.dto.ProductByIdDto;
 import dev.rkorn.testforeasybot.entities.Product;
+import dev.rkorn.testforeasybot.entities.enums.Type;
 import dev.rkorn.testforeasybot.repository.ProductRepository;
 import dev.rkorn.testforeasybot.service.ProductService;
 import jakarta.persistence.EntityNotFoundException;
@@ -68,8 +69,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductByIdDto> getAllProducts() {
-        return productRepository.findAll().stream().map(product -> ProductByIdDto.builder()
+    public List<ProductByIdDto> getAllProductsByType(String type) {
+        return productRepository.findAllByType(Type.valueOf(type)).stream().map(product -> ProductByIdDto.builder()
                 .producer(product.getProducer())
                 .amount(product.getAmount())
                 .series(product.getSeries())
